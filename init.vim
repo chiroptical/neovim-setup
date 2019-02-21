@@ -72,6 +72,8 @@ if executable('pyls')
     \ 'whitelist': ['python'],
     \ })
 endif
+let asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect,preview
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
 let g:lsp_diagnostics_enabled = 1
