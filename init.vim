@@ -72,7 +72,6 @@ if executable('pyls')
     \ 'whitelist': ['python'],
     \ })
 endif
-set completeopt+=preview
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
 let g:lsp_diagnostics_enabled = 1
@@ -80,6 +79,8 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
+nmap <F12> :LspDefinition<CR>
+nmap <leader>ld :LspDocumentDiagnostics<CR>
 
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
