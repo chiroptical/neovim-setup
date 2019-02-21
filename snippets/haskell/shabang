@@ -1,3 +1,0 @@
-#!/usr/bin/env stack
-{- stack --resolver lts-12.9 --install-ghc runghc -}
-${0:...}

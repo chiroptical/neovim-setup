@@ -5,13 +5,13 @@ filetype off
 " Plug Configuration
 call plug#begin("~/.local/share/nvim/plugged")
 Plug 'morhetz/gruvbox'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
-Plug 'andreyorst/SimpleSnippets.vim'
+Plug 'lervag/vimtex'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " My Favorites
@@ -56,14 +56,49 @@ let g:deoplete#enable_at_startup = 1
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
-" LCS Configurations
-let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['hie-wrapper'],
-    \ 'python': ['pyls']
-    \ }
+" vim-lsp
+if executable('hie-wrapper')
+    au user lsp_setup call lsp#register_server({
+        \ 'name': 'hie-wrapper',
+        \ 'cmd': {server_info->['hie-wrapper']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'stack.yaml'))},
+        \ 'whitelist': ['haskell'],
+        \ })
+endif
+if executable('pyls')
+    au user lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
+endif
+set completeopt+=preview
+let g:asyncomplete_smart_completion = 1
+let g:asyncomplete_auto_popup = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
-" SimpleSnippets
-let g:SimpleSnippetsExpandOrJumpTrigger = "<leader>n"
-let g:SimpleSnippetsJumpBackwardTrigger = "<leader>p"
-let g:SimpleSnippets_split_horizontal = 1
-let g:SimpleSnippets_search_path = "/ihome/sam/bmooreii/.config/nvim/snippets/"
+let g:vimtex_compiler_latexmk = {
+    \ 'options' : [
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ]
+    \}
+
+" NERDTree
+autocmd vimenter * NERDTree | wincmd p
+nmap <leader>nt :NERDTreeToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" FZF
+nmap <leader>ff :Files<CR>
+nmap <leader>fb :BLines<CR>
