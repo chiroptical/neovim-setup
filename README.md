@@ -7,6 +7,7 @@ This is my current neovim configuration. I use:
 - Autocomplete: [deoplete](https://github.com/Shougo/deoplete.nvim)
 - Tab all the things: [supertab](https://github.com/Shougo/deoplete.nvim)
 - Fuzzy file finder: [fzf.vim](https://github.com/junegunn/fzf.vim)
+    - Need command line tool `fzf`
 - Language server protocol: [vim-lsp](https://github.com/prabirshrestha/vim-lsp)
     - Haskell (https://github.com/haskell/haskell-ide-engine)
     - Python (https://github.com/palantir/python-language-server)

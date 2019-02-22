@@ -12,6 +12,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 " My Favorites
@@ -81,7 +82,7 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
-nmap <F12> :LspDefinition<CR>
+nmap <leader>ld :LspDefinition<CR>
 nmap <leader>ld :LspDocumentDiagnostics<CR>
 
 let g:vimtex_compiler_latexmk = {
@@ -95,7 +96,7 @@ let g:vimtex_compiler_latexmk = {
     \}
 
 " NERDTree
-autocmd vimenter * NERDTree | wincmd p
+" autocmd vimenter * NERDTree | wincmd p
 nmap <leader>nt :NERDTreeToggle<CR>
 nmap <leader>nf :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
