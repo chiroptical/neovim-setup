@@ -3,10 +3,11 @@ set nocompatible
 filetype off
 
 " Plug Configuration
+" Plug 'morhetz/gruvbox'
 call plug#begin("~/.local/share/nvim/plugged")
-Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 
 " My Favorites
@@ -44,7 +45,10 @@ vnoremap > >gv
 
 " Colorscheme
 set background=dark
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme desert
+syntax on
+filetype plugin indent on
 
 " NERDTree
 " autocmd vimenter * NERDTree | wincmd p
@@ -81,6 +85,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+inoremap <silent><expr> <c-space> coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -160,3 +166,12 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
