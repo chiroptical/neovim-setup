@@ -11,11 +11,11 @@
       "filetypes": ["hs", "lhs", "haskell"],
       "initializationOptions": {},
       "settings": {
-    "languageServerHaskell": {
-      "hlintOn": false,
-      "maxNumberOfProblems": 10,
-      "completionSnippetsOn": true
-    }
+        "languageServerHaskell": {
+          "hlintOn": false,
+          "maxNumberOfProblems": 10,
+          "completionSnippetsOn": true
+        }
       }
     },
     "digestif": {
