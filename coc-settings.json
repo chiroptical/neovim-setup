@@ -12,7 +12,7 @@
       "initializationOptions": {},
       "settings": {
         "languageServerHaskell": {
-          "hlintOn": false,
+          "hlintOn": true,
           "maxNumberOfProblems": 10,
           "completionSnippetsOn": true
         }
