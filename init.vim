@@ -8,6 +8,7 @@ call plug#begin("~/.local/share/nvim/plugged")
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " My Favorites
@@ -163,3 +164,6 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+" vim-commentary
+map <leader>gc <Plug>Commentary
