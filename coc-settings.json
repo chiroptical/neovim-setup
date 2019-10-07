@@ -1,5 +1,5 @@
 {
-  "suggest.noselect": false,
+  "suggest.noselect": true,
   "suggest.floatEnable": false,
   "diagnostic.messageTarget": "echo",
   "signature.target": "echo",
