@@ -3,12 +3,17 @@ set nocompatible
 filetype off
 
 " Plug Configuration
-" Plug 'morhetz/gruvbox'
 call plug#begin("~/.local/share/nvim/plugged")
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf'
+Plug 'andys8/vim-elm-syntax'
+Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+Plug 'purescript-contrib/purescript-vim'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " My Favorites
@@ -46,8 +51,8 @@ vnoremap > >gv
 
 " Colorscheme
 set background=dark
-" colorscheme gruvbox
-colorscheme desert
+colorscheme gruvbox
+" colorscheme desert
 syntax on
 filetype plugin indent on
 
@@ -167,3 +172,6 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 
 " vim-commentary
 map <leader>gc <Plug>Commentary
+
+" fzf
+nmap <leader>f :FZF <cr>
