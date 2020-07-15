@@ -13,7 +13,9 @@ Plug 'junegunn/fzf'
 Plug 'andys8/vim-elm-syntax'
 Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 Plug 'purescript-contrib/purescript-vim'
-Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
+Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim' }
+Plug 'djoshea/vim-autoread'
 call plug#end()
 
 " My Favorites
@@ -51,8 +53,8 @@ vnoremap > >gv
 
 " Colorscheme
 set background=dark
-colorscheme gruvbox
-" colorscheme desert
+let g:gruvbox_material_background = 'soft'
+colorscheme gruvbox-material
 syntax on
 filetype plugin indent on
 
@@ -175,3 +177,6 @@ map <leader>gc <Plug>Commentary
 
 " fzf
 nmap <leader>f :FZF <cr>
+
+" unison
+set autoread
