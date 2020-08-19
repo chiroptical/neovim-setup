@@ -5,16 +5,14 @@ filetype off
 " Plug Configuration
 call plug#begin("~/.local/share/nvim/plugged")
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'scrooloose/nerdtree'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf'
 Plug 'andys8/vim-elm-syntax'
-Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 Plug 'purescript-contrib/purescript-vim'
 Plug 'sainnhe/gruvbox-material'
-Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim' }
+Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim', 'branch': 'trunk' }
 Plug 'djoshea/vim-autoread'
 call plug#end()
 
@@ -57,14 +55,6 @@ let g:gruvbox_material_background = 'soft'
 colorscheme gruvbox-material
 syntax on
 filetype plugin indent on
-
-" NERDTree
-" autocmd vimenter * NERDTree | wincmd p
-nmap <leader>nt :NERDTreeToggle<CR>
-nmap <leader>nf :NERDTreeFind<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
 
 " coc.nvim
 " if hidden is not set, TextEdit might fail.
