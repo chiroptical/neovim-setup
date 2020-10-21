@@ -7,7 +7,7 @@
        "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
     },
     "haskell": {
-      "command": "hie-wrapper",
+      "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
       "rootPatterns": [
         "*.cabal",
