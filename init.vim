@@ -27,6 +27,7 @@ syntax on
 set pastetoggle=<F2>
 set nobackup
 set noswapfile
+set clipboard+=unnamedplus
 
 " Useful Maps
 let mapleader=','
