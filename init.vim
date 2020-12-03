@@ -14,6 +14,9 @@ Plug 'purescript-contrib/purescript-vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim', 'branch': 'trunk' }
 Plug 'djoshea/vim-autoread'
+Plug 'LnL7/vim-nix'
+Plug 'mileszs/ack.vim'
+Plug 'alx741/yesod.vim'
 call plug#end()
 
 " My Favorites
@@ -140,6 +143,9 @@ nmap <leader>cq <Plug>(coc-fix-current)
 " Restart coc
 nmap <leader>cr :CocRestart<cr>
 
+" Stop coc
+nmap <leader>cs :CocDisable<cr>
+
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -171,3 +177,10 @@ nmap <leader>f :FZF <cr>
 
 " unison
 set autoread
+
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+nmap <leader>aa :Ack! ""
+nmap <leader>ah :Ack! --haskell "<C-R><C-W>"

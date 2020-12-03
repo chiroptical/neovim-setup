@@ -1,11 +1,5 @@
 {
   "languageserver": {
-    "purescript": {
-       "command": "purescript-language-server",
-       "args": ["--stdio"],
-       "filetypes": ["purescript"],
-       "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
-    },
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
@@ -21,9 +15,18 @@
         "haskell"
       ],
       "initializationOptions": {
+        "haskell": {
+          "formattingProvider": "fourmolu"
+        },
         "languageServerHaskell": {
         }
       }
+    },
+    "purescript": {
+       "command": "purescript-language-server",
+       "args": ["--stdio"],
+       "filetypes": ["purescript"],
+       "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
     },
     "digestif": {
       "command": "digestif",
