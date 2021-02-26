@@ -4,7 +4,6 @@ filetype off
 
 " Plug Configuration
 call plug#begin("~/.local/share/nvim/plugged")
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neovimhaskell/haskell-vim'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'tpope/vim-commentary'
@@ -17,6 +16,10 @@ Plug 'djoshea/vim-autoread'
 Plug 'LnL7/vim-nix'
 Plug 'mileszs/ack.vim'
 Plug 'alx741/yesod.vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'steelsojka/completion-buffers'
+Plug 'nvim-treesitter/completion-treesitter'
 call plug#end()
 
 " My Favorites
@@ -60,105 +63,9 @@ colorscheme gruvbox-material
 syntax on
 filetype plugin indent on
 
-" coc.nvim
-" if hidden is not set, TextEdit might fail.
-set hidden
-
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <c-space> coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Use K to show documentation in preview window
-nnoremap <silent> <leader>cd :call <SID>show_documentation()<CR>
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>cn <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Remap for format selected region
-nmap <silent> <leader>cf :call CocAction('format')<cr>
-
-" Remap for do codeAction of current line
-nmap <leader>ca <Plug>(coc-codeaction)
-
-" Fix autofix problem of current line
-nmap <leader>cq <Plug>(coc-fix-current)
-
-" Restart coc
-nmap <leader>cr :CocRestart<cr>
-
-" Stop coc
-nmap <leader>cs :CocDisable<cr>
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
-
-" Using CocList
-nmap <leader>ff :CocList list<cr>
-nmap <leader>fb :CocList buffers<cr>
-nmap <leader>fg :CocList grep<cr>
-nmap <leader>fw :CocList words<cr>
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -184,3 +91,24 @@ if executable('ag')
 endif
 nmap <leader>aa :Ack! ""
 nmap <leader>ah :Ack! --haskell "<C-R><C-W>"
+nmap <leader>at :Ack! --ts "<C-R><C-W>"
+
+if (has("nvim-0.5.0"))
+:luafile $HOME/.config/nvim/lsp.lua
+endif
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'snippet', 'path', 'buffers']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
