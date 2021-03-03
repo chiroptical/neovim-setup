@@ -19,7 +19,7 @@ Plug 'alx741/yesod.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'steelsojka/completion-buffers'
-Plug 'nvim-treesitter/completion-treesitter'
+Plug '5outh/yesod-routes.vim'
 call plug#end()
 
 " My Favorites
@@ -112,3 +112,6 @@ let g:completion_chain_complete_list = [
     \{'mode': '<c-p>'},
     \{'mode': '<c-n>'}
 \]
+
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
