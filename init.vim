@@ -6,20 +6,21 @@ filetype off
 call plug#begin("~/.local/share/nvim/plugged")
 Plug 'neovimhaskell/haskell-vim'
 Plug 'pbrisbin/vim-syntax-shakespeare'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf'
 Plug 'andys8/vim-elm-syntax'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim', 'branch': 'trunk' }
 Plug 'djoshea/vim-autoread'
 Plug 'LnL7/vim-nix'
-Plug 'mileszs/ack.vim'
 Plug 'alx741/yesod.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'steelsojka/completion-buffers'
 Plug '5outh/yesod-routes.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'b3nj5m1n/kommentary'
 call plug#end()
 
 " My Favorites
@@ -76,22 +77,15 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-" vim-commentary
-map <leader>gc <Plug>Commentary
-
-" fzf
-nmap <leader>f :FZF <cr>
-
 " unison
 set autoread
 
-" Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-nmap <leader>aa :Ack! ""
-nmap <leader>ah :Ack! --haskell "<C-R><C-W>"
-nmap <leader>at :Ack! --ts "<C-R><C-W>"
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 
 if (has("nvim-0.5.0"))
 :luafile $HOME/.config/nvim/lsp.lua
