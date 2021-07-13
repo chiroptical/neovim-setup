@@ -83,3 +83,5 @@ local servers = {
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+require('telescope').load_extension('fzy_native')
