@@ -125,3 +125,6 @@
 (vim.api.nvim_exec 
   "autocmd BufEnter * lua require'completion'.on_attach()"
   false)
+
+;; Remove ex mode forever please
+(vim.api.nvim_set_keymap "" "Q" "<nop>" {})

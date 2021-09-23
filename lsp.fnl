@@ -46,7 +46,7 @@
         false))
   ))
 
-(let [servers ["tsserver" "hls"]
+(let [servers ["tsserver" "hls" "purescriptls"]
       nvim-lsp (require "lspconfig")
      ]
   (each [_ lsp-field (ipairs servers)]
