@@ -9,7 +9,6 @@
 (plug "pbrisbin/vim-syntax-shakespeare")
 (plug "andys8/vim-elm-syntax")
 (plug "purescript-contrib/purescript-vim")
-(plug "sainnhe/gruvbox-material")
 (plug "unisonweb/unison" {"rtp" "editor-support/vim"
                           "branch" "trunk"})
 (plug "djoshea/vim-autoread")
@@ -25,6 +24,7 @@
 (plug "nvim-telescope/telescope-fzy-native.nvim")
 (plug "b3nj5m1n/kommentary")
 (plug "bakpakin/fennel.vim")
+(plug "danilo-augusto/vim-afterglow")
 (vim.call "plug#end")
 
 ;; Some documentation https://github.com/nanotee/nvim-lua-guide
@@ -64,9 +64,10 @@
 (vim.api.nvim_set_keymap "v" ">" ">gv" {})
 
 ;; Colorscheme and syntax options
-(set vim.opt.background "dark")
+;; (set vim.opt.background "dark")
 (vim.api.nvim_set_var "gruvbox_material_background" "soft")
-(vim.cmd "colorscheme gruvbox-material")
+(vim.cmd "colorscheme afterglow")
+(vim.api.nvim_set_var "afterglow_inherit_background" 1)
 (set vim.opt.syntax "on")
 (vim.cmd "filetype plugin indent on")
 
