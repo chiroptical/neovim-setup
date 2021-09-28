@@ -64,10 +64,8 @@
 (vim.api.nvim_set_keymap "v" ">" ">gv" {})
 
 ;; Colorscheme and syntax options
-;; (set vim.opt.background "dark")
-(vim.api.nvim_set_var "gruvbox_material_background" "soft")
+(set vim.opt.background "light")
 (vim.cmd "colorscheme afterglow")
-(vim.api.nvim_set_var "afterglow_inherit_background" 1)
 (set vim.opt.syntax "on")
 (vim.cmd "filetype plugin indent on")
 
