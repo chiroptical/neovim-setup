@@ -114,7 +114,9 @@
   (set vim.opt.shortmess (.. shortmess "c")))
 
 (vim.api.nvim_set_var "completion_chain_complete_list" 
-  { :default { "complete_items" ["lsp" "snippet" "path" "buffers"] }
+  {	:default [ { :complete_items [ "lsp" "path" "buffers" "snippet" ] }
+               { :mode "<c-p>" }
+               { :mode "<c-n>" }]
     :TelescopePrompt []})
 
 ;; No autocommands api yet :(
