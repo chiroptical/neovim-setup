@@ -1,17 +1,8 @@
-SRCS=$(wildcard *.fnl)
-OBJS=$(SRCS:.fnl=.lua)
+build:
+	fennel -c plug.fnl > plug.lua
 
-all: $(OBJS)
-
-%.lua: %.fnl
-	fennel -c $< > $@
+format:
+	find . -name "*.fnl" -exec fnlfmt --fix {} \;
 
 clean:
-	rm -r $(OBJS)
-
-nix-build:
-	nix build
-
-link:
-	ln -s result/config.lua config.lua
-	ln -s result/lsp.lua lsp.lua
+	rm -r plug.lua

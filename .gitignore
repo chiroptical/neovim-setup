@@ -1,3 +1,2 @@
-result
-config.lua
-lsp.lua
+plug.lua
+lua/

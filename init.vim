@@ -1,5 +1,3 @@
-:luafile $HOME/.config/nvim/config.lua
-if (has("nvim-0.5.0"))
-:luafile $HOME/.config/nvim/lsp.lua
-endif
-
+" Initalize vim-plug and aniseed
+:luafile $HOME/.config/nvim/plug.lua
+let g:aniseed#env = {"module": "config.init", "compile": 1}
