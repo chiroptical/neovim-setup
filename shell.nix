@@ -1,7 +1,7 @@
-{ pkgs ? import ./pkgs.nix { } }:
+{ pkgs ? import ./nix/pkgs.nix { } }:
 
 let
-  fnlfmt = pkgs.callPackage ./fnlfmt.nix {};
+  fnlfmt = pkgs.callPackage ./nix/fnlfmt.nix {};
 in
   pkgs.mkShell {
     buildInputs = [ pkgs.fennel fnlfmt ];

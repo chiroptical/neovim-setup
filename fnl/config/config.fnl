@@ -87,10 +87,9 @@
                                  {:mode :<c-n>}]
                        :TelescopePrompt []})
 
-;; No autocommands api yet :(
-;; See https://github.com/neovim/neovim/pull/14661
-(vim.api.nvim_exec "autocmd BufEnter * lua require'completion'.on_attach()"
-                   false)
-
 ;; Remove ex mode forever please
 (vim.api.nvim_set_keymap "" :Q :<nop> {})
+
+;; Autostart coq_nvim
+(vim.api.nvim_set_var :coq_settings {:auto_start true})
+(require :coq)

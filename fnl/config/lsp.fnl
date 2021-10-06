@@ -50,16 +50,17 @@
       nvim-lsp (require :lspconfig)]
   (each [_ lsp-field (ipairs servers)]
     (let [lsp (. nvim-lsp lsp-field)]
-      (lsp.setup {:on_attach on-attach}))))
+      (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach})))))
 
 ;; Use halfsp or haskell language server
 (let [nvim-lsp (require :lspconfig)
-      use-halfsp true
+      use-halfsp false
       lsp (. nvim-lsp :hls)]
-  (lsp.setup {:on_attach on-attach
-              :cmd (if use-halfsp [:halfsp]
-                       [:haskell-language-server-wrapper :--lsp])
-              :settings {:haskell {:formattingProvider :fourmolu}}}))
+  (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
+                                           :cmd (if use-halfsp [:halfsp]
+                                                    [:haskell-language-server-wrapper
+                                                     :--lsp])
+                                           :settings {:haskell {:formattingProvider :fourmolu}}})))
 
 (let [telescope (require :telescope)]
   (telescope.load_extension :fzy_native))

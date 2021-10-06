@@ -1,6 +1,6 @@
 ;; Set up vim-plug
 (local plug vim.fn.plug#)
-(vim.call "plug#begin" "~/.local/share/nvim/plugged")
+(vim.call "plug#begin" "~/.config/nvim/plug")
 (plug :neovimhaskell/haskell-vim)
 (plug :pbrisbin/vim-syntax-shakespeare)
 (plug :andys8/vim-elm-syntax)
@@ -10,8 +10,7 @@
 (plug :LnL7/vim-nix)
 (plug :alx741/yesod.vim)
 (plug :neovim/nvim-lspconfig)
-(plug :nvim-lua/completion-nvim)
-(plug :steelsojka/completion-buffers)
+(plug :ms-jpq/coq_nvim {:branch :coq})
 (plug :5outh/yesod-routes.vim)
 (plug :nvim-lua/popup.nvim)
 (plug :nvim-lua/plenary.nvim)
