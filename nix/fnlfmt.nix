@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "fnlfmt";
-  version = "main";
+  version = "0.2.2";
 
   src = fetchFromSourcehut {
     owner = "~technomancy";
     repo = pname;
     rev = version;
-    sha256 = "1bkcyfjpbnfrjax5l5bn55s3p79lm297lyc4a2qsj207yv93kz3y";
+    sha256 = "1rv0amqhy5ypi3pvxfaadn3k1cy4mjlc49wdzl2psz3i11w9gr36";
   };
 
   nativeBuildInputs = [ fennel ];
