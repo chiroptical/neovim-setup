@@ -57,17 +57,15 @@
 (set vim.opt.autoread true)
 
 ;; Telescope
-(vim.api.nvim_set_keymap :n :<leader>fg
-                         "<cmd>lua require'telescope.builtin'.live_grep{}<cr>"
-                         {})
-(vim.api.nvim_set_keymap :n :<leader>ff
-                         "<cmd>lua require'telescope.builtin'.find_files{}<cr>"
-                         {})
-(vim.api.nvim_set_keymap :n :<leader>fs
-                         "<cmd>lua require'telescope.builtin'.grep_string{}<cr>"
-                         {})
-(vim.api.nvim_set_keymap :n :<leader>fb
-                         "<cmd>lua require'telescope.builtin'.buffers{}<cr>" {})
+(let [vimp (require :vimp)
+      tb (require :telescope.builtin)]
+  (vimp.nnoremap :<leader>ff (fn []
+                               (tb.find_files {})))
+  (vimp.nnoremap :<leader>fs
+                 (fn []
+                   (tb.grep_string {})))
+  (vimp.nnoremap :<leader>fb (fn []
+                               (tb.buffers {}))))
 
 ;; Use tab and s-tab to navigate through popup menu
 (vim.api.nvim_set_keymap :i :<tab> "pumvisible() ? \"\\<c-n>\" : \"\\<tab>\""

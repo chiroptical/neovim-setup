@@ -21,4 +21,5 @@
 (plug :danilo-augusto/vim-afterglow)
 (plug :Olical/aniseed {:tag :v3.22.0})
 (plug :Olical/conjure {:tag :v4.24.0})
+(plug :svermeulen/vimpeccable)
 (vim.call "plug#end")
