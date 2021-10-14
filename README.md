@@ -1,5 +1,9 @@
 # neovim-setup
 
+## TODO
+
+- Replace vim-plug with niv + nixpkgs vim plugins
+
 ## Setting up
 
 ```
@@ -15,7 +19,3 @@ vim -c ":COQdeps"
 - [Tutorial](https://fennel-lang.org/tutorial)
 - [Aniseed](https://github.com/Olical/aniseed): automatically load fennel -> lua when opening vim
 - [Conjure](https://github.com/Olical/conjure): **TODO**
-
-## TODO
-
-- Similar to aniseed, we could let nix provide all of our dependencies
