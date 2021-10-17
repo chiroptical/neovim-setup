@@ -1,6 +1,7 @@
-{ pkgs ? import ./nix/pkgs.nix {} }:
-
 let
+  sources = import ./nix/sources.nix;
+  pkgs = import sources.nixpkgs { };
+
   aniseed = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "aniseed";
     version = "v3.22.1";
@@ -13,23 +14,14 @@ let
     meta.homepage = "https://github.com/Olical/aniseed";
   };
 in
-  pkgs.stdenv.mkDerivation {
-    name = "init.vim";
-    phases = [ "installPhase" "fixupPhase" ];
-    installPhase = ''
-      mkdir $out
-      cat << EOF > $out/init.vim
-        set runtimepath+=${aniseed}
-        set runtimepath+=${pkgs.vimPlugins.haskell-vim}
-        set runtimepath+=${pkgs.vimPlugins.vim-elm-syntax}
-        set runtimepath+=${pkgs.vimPlugins.purescript-vim}
-        set runtimepath+=${pkgs.vimPlugins.nvim-lspconfig}
-        set runtimepath+=${pkgs.vimPlugins.popup-nvim}
-        set runtimepath+=${pkgs.vimPlugins.plenary-nvim}
-        set runtimepath+=${pkgs.vimPlugins.telescope-nvim}
-        set runtimepath+=${pkgs.vimPlugins.telescope-fzy-native-nvim}
-        set runtimepath+=${pkgs.vimPlugins.conjure}
-        let g:aniseed#env = {"module": "config.init", "compile": 1}
-      EOF
-    '';
-  }
+pkgs.stdenv.mkDerivation {
+  name = "init.vim";
+  phases = [ "installPhase" "fixupPhase" ];
+  installPhase = ''
+    mkdir $out
+    cat << EOF > $out/init.vim
+    set runtimepath+=${aniseed}
+    let g:aniseed#env = {"module": "config.init", "compile": 1}
+    EOF
+  '';
+}
