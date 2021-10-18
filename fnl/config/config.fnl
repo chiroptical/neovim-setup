@@ -64,6 +64,8 @@
   (vimp.nnoremap :<leader>fs
                  (fn []
                    (tb.grep_string {})))
+  (vimp.nnoremap :<leader>fg (fn []
+                               (tb.live_grep {})))
   (vimp.nnoremap :<leader>fb (fn []
                                (tb.buffers {}))))
 
