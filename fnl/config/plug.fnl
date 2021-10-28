@@ -20,7 +20,7 @@
 
 ;; general utilities
 (plug :ms-jpq/coq_nvim {:branch :coq})
-(plug :b3nj5m1n/kommentary)
+(plug :terrortylor/nvim-comment)
 (plug :neovim/nvim-lspconfig)
 
 ;; telescope

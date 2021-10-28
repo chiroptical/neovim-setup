@@ -99,3 +99,7 @@
 ;; Autostart coq_nvim
 (vim.api.nvim_set_var :coq_settings {:auto_start true})
 (require :coq)
+
+;; setup nvim_comment
+(let [comm (require :nvim_comment)]
+  (comm.setup {}))
