@@ -21,12 +21,13 @@
 (vim.api.nvim_set_var :mapleader ",")
 (vim.api.nvim_set_keymap :n ";" ":" {:noremap true})
 (vim.api.nvim_set_keymap "" :<leader>z :<c-w><c-w> {})
-(vim.api.nvim_set_keymap :n :<leader>l ":nohlsearch<cr>" {:silent true})
+(vim.api.nvim_set_keymap :n :<leader>/ ":nohlsearch<cr>" {:silent true})
 (vim.api.nvim_set_keymap :n :<leader>s ":setlocal spell! spell?<cr>" {})
 (vim.api.nvim_set_keymap :n :<leader>wa ":wqa<cr>" {})
 (vim.api.nvim_set_keymap :n :<leader>ww ":w<cr>" {})
 (vim.api.nvim_set_keymap :n :<leader>qa ":qa<cr>" {})
 (vim.api.nvim_set_keymap :n :<leader>qq ":bd<cr>" {})
+(vim.api.nvim_set_keymap :n :<leader>n ":set number!<cr>" {})
 
 ;; Tab settings
 (set vim.opt.shiftround true)
