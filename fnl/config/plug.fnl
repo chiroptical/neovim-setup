@@ -10,6 +10,7 @@
 (plug :andys8/vim-elm-syntax)
 (plug :purescript-contrib/purescript-vim)
 (plug :LnL7/vim-nix)
+(plug :rust-lang/rust.vim)
 
 ;; themes
 (plug :danilo-augusto/vim-afterglow)

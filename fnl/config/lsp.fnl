@@ -46,7 +46,7 @@
                          false))))
 
 ;; LSP servers using defaults
-(let [servers [:tsserver :purescriptls]
+(let [servers [:tsserver :purescriptls :rls]
       nvim-lsp (require :lspconfig)]
   (each [_ lsp-field (ipairs servers)]
     (let [lsp (. nvim-lsp lsp-field)]
