@@ -52,14 +52,11 @@
     (let [lsp (. nvim-lsp lsp-field)]
       (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach})))))
 
-;; Use halfsp or haskell language server
 (let [nvim-lsp (require :lspconfig)
-      use-halfsp false
       lsp (. nvim-lsp :hls)]
   (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
-                                           :cmd (if use-halfsp [:halfsp]
-                                                    [:haskell-language-server-wrapper
-                                                     :--lsp])
+                                           :cmd [:haskell-language-server-wrapper
+                                                 :--lsp]
                                            :settings {:haskell {:formattingProvider :fourmolu
                                                                 :plugin {:ghcide-completions {:config {:autoExtendOn false}}}}}})))
 
