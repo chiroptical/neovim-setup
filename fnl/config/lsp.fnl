@@ -10,40 +10,21 @@
                          (vim.api.nvim_buf_set_option buffer-handle ...))
         options {:noremap true :silent true}]
     (buf-set-option :omnifunc "v:lua.vim.lsp.omnifunc")
-    (buf-set-keymap :n :<leader>ca "<cmd>lua vim.lsp.buf.code_action()<cr>"
-                    options)
+    (buf-set-keymap :n :<leader>cd "<cmd>lua vim.lsp.buf.hover()<cr>" options)
     (buf-set-keymap :n :<leader>cq "<cmd>lua vim.lsp.buf.declaration()<cr>"
                     options)
     (buf-set-keymap :n :<leader>cw "<cmd>lua vim.lsp.buf.definition()<cr>"
                     options)
-    (buf-set-keymap :n :<leader>cd "<cmd>lua vim.lsp.buf.hover()<cr>" options)
     (buf-set-keymap :n :<leader>ci "<cmd>lua vim.lsp.buf.implementation()<cr>"
                     options)
-    (buf-set-keymap :n :<leader>cs "<cmd>lua vim.lsp.buf.signature_help()<cr>"
-                    options)
-    (buf-set-keymap :n :<leader>ct "<cmd>lua vim.lsp.buf.type_definition()<cr>"
-                    options)
-    (buf-set-keymap :n :<leader>cr "<cmd>lua vim.lsp.buf.rename()<cr>" options)
-    (buf-set-keymap :n :<leader>cg "<cmd>lua vim.lsp.buf.references()<cr>"
-                    options)
-    (buf-set-keymap :n :<leader>cf "<cmd>lua vim.lsp.buf.formatting()<cr>"
-                    options)
     (buf-set-keymap :n :<leader>cl
-                    "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>"
+                    "<cmd>lua vim.lsp.diagnostic.open_float()<cr>" options)
+    (buf-set-keymap :n :<leader>ca "<cmd>lua vim.lsp.buf.code_action()<cr>"
                     options)
     (buf-set-keymap :n :<leader>sk
                     "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>" options)
     (buf-set-keymap :n :<leader>sj
-                    "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" options)
-    (buf-set-keymap :n :<leader>sq
-                    "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>" options)
-    (when client.resolved_capabilities.show_line_diagnostics
-      (vim.api.nvim_exec (intercalate "\n"
-                                      ["augroup lsp_document_show_line_diagnostics"
-                                       "  autocmd!"
-                                       "  autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()"
-                                       "augroup END"])
-                         false))))
+                    "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" options)))
 
 ;; LSP servers using defaults
 (let [servers [:tsserver :purescriptls :rls :elmls]
