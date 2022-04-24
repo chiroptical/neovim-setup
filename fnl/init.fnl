@@ -1,4 +1,4 @@
-(module config.init {autoload {core aniseed.core nvim aniseed.nvim}})
+(module init {autoload {core aniseed.core nvim aniseed.nvim}})
 
 (require :config.plug)
 (require :config.config)
