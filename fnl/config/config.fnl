@@ -45,6 +45,12 @@
 (set vim.opt.syntax :on)
 (vim.cmd "filetype plugin indent on")
 
+;; Diagnostic float colors
+(vim.cmd "hi DiagnosticFloatingError ctermbg=237 guibg=#303030")
+(vim.cmd "hi DiagnosticFloatingWarn ctermbg=237 guibg=#303030")
+(vim.cmd "hi DiagnosticFloatingInfo ctermbg=237 guibg=#303030")
+(vim.cmd "hi DiagnosticFloatingHint ctermbg=237 guibg=#303030")
+
 ;; Haskell vim setup
 (vim.api.nvim_set_var :haskell_enable_quantification 1)
 (vim.api.nvim_set_var :haskell_enable_recursivedo 1)

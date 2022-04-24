@@ -17,8 +17,8 @@
                     options)
     (buf-set-keymap :n :<leader>ci "<cmd>lua vim.lsp.buf.implementation()<cr>"
                     options)
-    (buf-set-keymap :n :<leader>cl
-                    "<cmd>lua vim.lsp.diagnostic.open_float()<cr>" options)
+    (buf-set-keymap :n :<leader>cl "<cmd>lua vim.diagnostic.open_float()<cr>"
+                    options)
     (buf-set-keymap :n :<leader>ca "<cmd>lua vim.lsp.buf.code_action()<cr>"
                     options)
     (buf-set-keymap :n :<leader>sk
