@@ -1,6 +1,10 @@
 ;; Set up vim-plug
 (local plug vim.fn.plug#)
-(vim.call "plug#begin" "~/.config/nvim/plug")
+(local plug-begin vim.fn.plug#begin)
+(local plug-end vim.fn.plug#end)
+
+(plug-begin "~/.config/nvim/plug")
+
 ;; highlighting
 (plug :neovimhaskell/haskell-vim)
 (plug :pbrisbin/vim-syntax-shakespeare)
@@ -11,6 +15,7 @@
 (plug :purescript-contrib/purescript-vim)
 (plug :LnL7/vim-nix)
 (plug :rust-lang/rust.vim)
+(plug :cespare/vim-toml)
 
 ;; themes
 (plug :danilo-augusto/vim-afterglow)
@@ -32,4 +37,5 @@
 
 ;; fennel utilities
 (plug :svermeulen/vimpeccable)
-(vim.call "plug#end")
+
+(plug-end)

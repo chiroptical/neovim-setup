@@ -46,17 +46,19 @@
                          false))))
 
 ;; LSP servers using defaults
-(let [servers [:tsserver :purescriptls :rls]
+(let [servers [:tsserver :purescriptls :rls :elmls]
       nvim-lsp (require :lspconfig)]
   (each [_ lsp-field (ipairs servers)]
     (let [lsp (. nvim-lsp lsp-field)]
       (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach})))))
 
 (let [nvim-lsp (require :lspconfig)
-      lsp (. nvim-lsp :hls)]
+      lsp (. nvim-lsp :hls)
+      use-halfsp false]
   (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
-                                           :cmd [:haskell-language-server-wrapper
-                                                 :--lsp]
+                                           :cmd (if use-halfsp [:halfsp]
+                                                    [:haskell-language-server-wrapper
+                                                     :--lsp])
                                            :settings {:haskell {:formattingProvider :fourmolu
                                                                 :plugin {:ghcide-completions {:config {:autoExtendOn false}}}}}})))
 
