@@ -35,13 +35,16 @@
 
 (let [nvim-lsp (require :lspconfig)
       lsp (. nvim-lsp :hls)
-      use-halfsp false]
-  (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
-                                           :cmd (if use-halfsp [:halfsp]
-                                                    [:haskell-language-server-wrapper
-                                                     :--lsp])
-                                           :settings {:haskell {:formattingProvider :fourmolu
-                                                                :plugin {:ghcide-completions {:config {:autoExtendOn false}}}}}})))
+      use-halfsp true]
+  (if use-halfsp
+      (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
+                                               :cmd [:halfsp]
+                                               :settings {:haskell {:formattingProvider :fourmolu}}}))
+      (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
+                                               :cmd [:haskell-language-server-wrapper
+                                                     :--lsp]
+                                               :settings {:haskell {:formattingProvider :fourmolu
+                                                                    :plugin {:ghcide-completions {:config {:autoExtendOn false}}}}}}))))
 
 (let [telescope (require :telescope)]
   (telescope.load_extension :fzy_native))

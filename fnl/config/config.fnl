@@ -29,6 +29,10 @@
 (vim.api.nvim_set_keymap :n :<leader>qq ":bd<cr>" {})
 (vim.api.nvim_set_keymap :n :<leader>n ":set number!<cr>" {})
 
+;; Navigation
+(vim.api.nvim_set_keymap :n :<leader>i :<c-i> {})
+(vim.api.nvim_set_keymap :n :<leader>o :<c-o> {})
+
 ;; Tab settings
 (set vim.opt.shiftround true)
 (set vim.opt.expandtab true)
