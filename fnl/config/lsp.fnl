@@ -27,11 +27,23 @@
                     "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" options)))
 
 ;; LSP servers using defaults
-(let [servers [:tsserver :purescriptls :rls :elmls]
+(let [servers [:purescriptls :rls :elmls]
       nvim-lsp (require :lspconfig)]
   (each [_ lsp-field (ipairs servers)]
     (let [lsp (. nvim-lsp lsp-field)]
       (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach})))))
+
+(fn lsp-with-cmd [server cmd]
+  (let [nvim-lsp (require :lspconfig)]
+    (each [_ lsp-field (ipairs [server])]
+      (let [lsp (. nvim-lsp lsp-field)]
+        (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach : cmd}))))))
+
+(lsp-with-cmd :tsserver [:/home/barry/.npm-packages/bin/vscode-eslint-language-server
+                         :--stdio])
+
+(lsp-with-cmd :cssls [:/home/barry/.npm-packages/bin/vscode-css-language-server
+                      :--stdio])
 
 (let [nvim-lsp (require :lspconfig)
       lsp (. nvim-lsp :hls)
