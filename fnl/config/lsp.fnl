@@ -50,7 +50,7 @@
 (lsp-with-cmd :cssls [:/home/barry/.npm-packages/bin/vscode-css-language-server
                       :--stdio] {})
 
-(let [use-halfsp false]
+(let [use-halfsp (os.getenv :USE_HALFSP)]
   (if use-halfsp
       (lsp-with-cmd :hls [:halfsp] {:haskell {:formattingProvider :fourmolu}})
       (lsp-with-cmd :hls [:haskell-language-server-wrapper :--lsp]
