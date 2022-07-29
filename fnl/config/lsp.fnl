@@ -27,36 +27,35 @@
                     "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" options)))
 
 ;; LSP servers using defaults
-(let [servers [:purescriptls :rls :elmls]
+(let [servers [:purescriptls :elmls]
       nvim-lsp (require :lspconfig)]
   (each [_ lsp-field (ipairs servers)]
     (let [lsp (. nvim-lsp lsp-field)]
       (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach})))))
 
-(fn lsp-with-cmd [server cmd]
+(fn lsp-with-cmd [server cmd settings]
   (let [nvim-lsp (require :lspconfig)]
     (each [_ lsp-field (ipairs [server])]
       (let [lsp (. nvim-lsp lsp-field)]
-        (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach : cmd}))))))
+        (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
+                                                 : cmd
+                                                 : settings}))))))
+
+(lsp-with-cmd :rust_analyzer [:/usr/bin/rust-analyzer]
+              {:rust-analyzer {:checkOnSave {:command :clippy}}})
 
 (lsp-with-cmd :tsserver [:/home/barry/.npm-packages/bin/vscode-eslint-language-server
-                         :--stdio])
+                         :--stdio] {})
 
 (lsp-with-cmd :cssls [:/home/barry/.npm-packages/bin/vscode-css-language-server
-                      :--stdio])
+                      :--stdio] {})
 
-(let [nvim-lsp (require :lspconfig)
-      lsp (. nvim-lsp :hls)
-      use-halfsp true]
+(let [use-halfsp false]
   (if use-halfsp
-      (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
-                                               :cmd [:halfsp]
-                                               :settings {:haskell {:formattingProvider :fourmolu}}}))
-      (lsp.setup (coq.lsp_ensure_capabilities {:on_attach on-attach
-                                               :cmd [:haskell-language-server-wrapper
-                                                     :--lsp]
-                                               :settings {:haskell {:formattingProvider :fourmolu
-                                                                    :plugin {:ghcide-completions {:config {:autoExtendOn false}}}}}}))))
+      (lsp-with-cmd :hls [:halfsp] {:haskell {:formattingProvider :fourmolu}})
+      (lsp-with-cmd :hls [:haskell-language-server-wrapper :--lsp]
+                    {:haskell {:formattingProvider :fourmolu
+                               :plugin {:ghcide-completions {:config {:autoExtendOn false}}}}})))
 
 (let [telescope (require :telescope)]
   (telescope.load_extension :fzy_native))
