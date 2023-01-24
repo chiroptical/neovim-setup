@@ -1,5 +1,8 @@
 # neovim-setup
 
+DEPRECATED: Upgrading the Fennel bits to keep this running was too frustrating.
+I am now using: https://github.com/chiroptical/kickstart.nvim which is a fork I am modifying.
+
 ## TODO
 
 - Replace vim-plug with niv + nixpkgs vim plugins
