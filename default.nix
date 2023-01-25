@@ -4,12 +4,12 @@ let
 
   aniseed = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "aniseed";
-    version = "v3.29.0";
+    version = "v3.32.0";
     src = pkgs.fetchFromGitHub {
       owner = "Olical";
       repo = "aniseed";
-      rev = "bfaefa11c9e6b36b17a7fe11f8f005198411c3e5";
-      sha256 = "sha256-bYwso4JLsOJwPU6WvkEvNCVJeedpSg1TmhY8aQhYEYc";
+      rev = "a7445c340fb7a0529f3c413eb99d3f8d29f50ba2";
+      sha256 = "sha256-KTNImPjifuoj0/ahuYcqMtutGgOR4XnYruv/JVjyrTk=";
     };
     meta.homepage = "https://github.com/Olical/aniseed";
   };
